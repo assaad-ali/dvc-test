@@ -2,6 +2,19 @@ import subprocess
 import os
 
 
+def check_s3_configured(remote_name):
+    try:
+        result = run_command(f"dvc remote list | grep {remote_name}")
+        if result != 0:
+            print(f"Error running command: dvc remote list\n{result.stderr}")
+            return False
+        print(f"Remote {remote_name} is already configured.")
+        return True
+        
+    except Exception as e:
+        print(f"Failed to check if S3 is configured: {e}")
+        return False
+
 def check_dvc_initialized():
     return os.path.isdir(".dvc")
 
