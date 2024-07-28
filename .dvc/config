@@ -1,0 +1,6 @@
+[core]
+    autostage = true
+    remote = dvc-project
+['remote "dvc-project"']
+    url = s3://fsd2-dvc-27-jul-24/dvc-project_0/
+    endpointurl = https://s3.eu-central-1.amazonaws.com
