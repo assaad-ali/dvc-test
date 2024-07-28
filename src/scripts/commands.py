@@ -5,6 +5,9 @@ import os
 def check_dvc_initialized():
     return os.path.isdir(".dvc")
 
+def check_git_initialized():
+    return os.path.isdir(".git")
+
 def run_command(command):
     result = subprocess.run(command, capture_output=True, text=True, shell=True)
     if result.returncode != 0:
