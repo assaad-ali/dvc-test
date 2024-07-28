@@ -1,0 +1,6 @@
+outs:
+- md5: 61c35f703ff039e0f6275ef50a070175.dir
+  size: 715014
+  nfiles: 1
+  hash: md5
+  path: sales
