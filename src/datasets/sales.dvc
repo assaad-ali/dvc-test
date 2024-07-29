@@ -1,6 +1,6 @@
 outs:
-- md5: d488ae9ac64697b2e3af465397ad5143.dir
-  size: 1803809
-  nfiles: 2
+- md5: 6f6545b0fb5e5379f8a02b7d2cf2db05.dir
+  size: 1100343
+  nfiles: 1
   hash: md5
   path: sales
