@@ -84,3 +84,34 @@ def configure_s3_remote(remote_name, bucket_name, region):
         print(f"Failed to modify remote {remote_name}.")
         return
     print(f"Configured S3 remote '{remote_name}' for bucket '{bucket_name}' in region '{region}'.")
+
+def check_gdrive_configured(remote_name):
+
+    try:
+        result = run_command(f"dvc remote list | grep {remote_name}")
+        if result != 0:
+            print(f"Remote {remote_name} is not configured.")
+            return False
+    except Exception as e:
+        print(f"Error checking Google Drive configuration: {e}")
+        return False
+
+def setup_gdrive_remote(remote_name, folder_id):
+    try:
+        run_command(f"dvc remote add -d {remote_name} gdrive://{folder_id}")
+        run_command(f"dvc remote modify {remote_name} gdrive_use_service_account true")
+
+        print("Google Drive remote setup complete.")
+
+    except Exception as e:
+        print(f"Error setting up Google Drive remote: {e}")
+
+def modify_gdrive_remote(remote_name, client_id, client_secret):
+    try:
+        run_command(f"dvc remote modify {remote_name} gdrive_client_id {client_id}")
+        run_command(f"dvc remote modify {remote_name} gdrive_client_secret {client_secret}")
+
+        print("Google Drive remote modified with client ID and secret.")
+        
+    except Exception as e:
+        print(f"Error modifying Google Drive remote: {e}")
