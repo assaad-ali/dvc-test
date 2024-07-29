@@ -1,6 +1,8 @@
 [core]
     autostage = true
-    remote = dvc-project
-['remote "dvc-project"']
+    remote = gdrive
+['remote "s3"']
     url = s3://fsd2-dvc-27-jul-24/dvc-project_0/datasets/sales
     endpointurl = https://s3.eu-central-1.amazonaws.com
+['remote "gdrive"']
+    url = gdrive://1_YvezWxXxAhq6yJEsmvlhhcOamTpONKH/dvcstore
