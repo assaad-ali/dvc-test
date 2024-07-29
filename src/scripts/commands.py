@@ -6,7 +6,7 @@ def check_s3_configured(remote_name):
     try:
         result = run_command(f"dvc remote list | grep {remote_name}")
         if result != 0:
-            print(f"Error running command: dvc remote list\n{result.stderr}")
+            print(f"Remote {remote_name} is not configured.")
             return False
         print(f"Remote {remote_name} is already configured.")
         return True
@@ -22,12 +22,17 @@ def check_git_initialized():
     return os.path.isdir(".git")
 
 def run_command(command):
-    result = subprocess.run(command, capture_output=True, text=True, shell=True)
-    if result.returncode != 0:
-        print(f"Error running command: {command}\n{result.stderr}")
-    else:
-        print(result.stdout)
-    return result.returncode
+    try:
+        result = subprocess.run(command, capture_output=True, text=True, shell=True)
+        if result.returncode != 0:
+            print(f"Running command: {command}\n{result}")
+        else:
+            print(result.stdout)
+        return result.returncode
+    
+    except Exception as e:
+        print(f"Failed to run command: {command}\n{e}")
+        return 1
 
 def git_init():
     return run_command("git init")
